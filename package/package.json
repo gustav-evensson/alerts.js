@@ -1,0 +1,25 @@
+{
+  "name": "alerts.js",
+  "version": "1.0.0",
+  "description": "A javascript notification / alerts library",
+  "main": "./dist/alerts.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gustav-evensson/alerts.js.git"
+  },
+  "keywords": [
+    "notifications",
+    "notification",
+    "alerts",
+    "alert"
+  ],
+  "author": "Gustav Evensson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gustav-evensson/alerts.js/issues"
+  },
+  "homepage": "https://github.com/gustav-evensson/alerts.js#readme"
+}

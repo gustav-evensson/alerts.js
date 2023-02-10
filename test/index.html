@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="./bgArt.jpg" alt="">
+    <button onclick="njs.createNotification('Hello from Notifications.js!', 'alert', 'persisted')">Create Notice</button>
+    <script>
+        const njs = new Notifications({
+            type: 'glass',
+            position: 'bottom-center',
+            animation: {
+                type: 'slide-up'
+            }
+        })
+    </script>
+    <style>
+        img, button{
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            translate: -50% -50%;
+        }
+        img{
+            width: 100%;
+            height: 100vh;
+        }
+        button{
+            background-color: white;
+            font-size: 24px;
+            padding: 15px 40px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</body>
+</html>
