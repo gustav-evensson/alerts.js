@@ -1,23 +1,11 @@
 #alerts-container {
-  --error-color: #d64747;
-  --warning-color: #d27722;
-  --success-color: #0ba808;
-  --alerts-color: #5274ca;
-  --light-bg-color: #ffffff;
-  --dark-bg-color: #303030;
-  --light-text-color: #000000;
-  --dark-text-color: #ffffff;
-  --wall-gap: 10px;
-  --font-size: 24px;
-  --animation-duration: 300ms;
-  --animation-easing: ease;
   position: fixed;
   top: 0;
   left: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
+  width: 100%;
   gap: 10px;
   font-family: "Montserrat", sans-serif;
   z-index: 999999;
@@ -35,19 +23,24 @@
   box-shadow: 0px 16px 34px -7px rgba(0, 0, 0, 0.25);
   font-size: var(--font-size);
   border-radius: 6px;
-  padding: 18px;
+  padding: 0.7em;
   min-width: 300px;
   width: fit-content;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 18px;
+  gap: 0.7em;
   overflow: hidden;
   opacity: 0;
   translate: 0 -100%;
+  margin-inline: var(--wall-gap);
   transition: opacity var(--animation-duration) var(--animation-easing), translate var(--animation-duration) var(--animation-easing);
 }
 #alerts-container .alerts .alerts-icon {
+  width: 1.5em;
+  height: 1.5em;
+}
+#alerts-container .alerts .alerts-icon svg {
   width: 1.5em;
   height: 1.5em;
 }
@@ -62,6 +55,10 @@
   position: relative;
   cursor: pointer;
 }
+#alerts-container .alerts .alerts-close-icon svg {
+  height: 1.5em;
+  width: 1.5em;
+}
 #alerts-container .alerts .alerts-close-icon svg path {
   stroke: var(--light-text-color);
 }
@@ -71,16 +68,16 @@
   top: 50%;
   left: 50%;
   translate: -50% -50%;
-  width: 0%;
-  height: 0%;
+  width: 0;
+  height: 0;
   background: var(--light-text-color);
   border-radius: 50%;
   opacity: 0.1;
   transition: width 200ms, height 200ms;
 }
 #alerts-container .alerts .alerts-close-icon:hover::before {
-  width: 120%;
-  height: 120%;
+  width: 1.7em;
+  height: 1.7em;
 }
 #alerts-container .alerts.error .alerts-icon svg path {
   stroke: var(--error-color);
@@ -104,10 +101,10 @@
   stroke: none;
 }
 #alerts-container .alerts.alert .alerts-icon svg path {
-  stroke: var(--alerts-color);
+  stroke: var(--alert-color);
 }
 #alerts-container .alerts.alert .alerts-icon svg .fill {
-  fill: var(--alerts-color);
+  fill: var(--alert-color);
   stroke: none;
 }
 
@@ -148,7 +145,7 @@
   background: var(--success-color);
 }
 #alerts-container.colorfull .alerts.alert {
-  background: var(--alerts-color);
+  background: var(--alert-color);
 }
 
 #alerts-container.glass .alerts {

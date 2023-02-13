@@ -4,20 +4,19 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alerts.js/browser/style.css" />
+		<link rel="stylesheet" href="../style.css" />
 		<title>Document</title>
 	</head>
 	<body>
 		<img src="./bgArt.jpg"/>
 		<button onclick="ajs.createAlert('Hello from Alerts.js!', 'success', 'persisted')">Create Notice</button>
-        <script src="https://cdn.jsdelivr.net/npm/alerts.js/browser/alerts.min.js"></script>
+        <script src="../alerts.js"></script>
 		<script>
                 const ajs = new AlertsContainer({
                     position: 'bottom-center',
                     animation: {
                         type: 'slide-up',
-                    },
-                    fontSize: 12
+                    }
                 });
 		</script>
 		<style>
@@ -31,7 +30,6 @@
 			img {
 				width: 100%;
 				height: 100vh;
-				object-fit: cover;
 			}
 			button {
 				background-color: white;

@@ -86,7 +86,7 @@ class AlertsContainer {
 		alertContainer.style.setProperty('--dark-text-color', this.fallbackValues.colors.textColor.dark);
 
 		alertContainer.style.setProperty('--wall-gap', this.fallbackValues.wallGap.toString() + 'px');
-		alertContainer.style.setProperty('--fonts-size', this.fallbackValues.fontSize.toString() + 'px');
+		alertContainer.style.setProperty('--font-size', this.fallbackValues.fontSize.toString() + 'px');
 
 		alertContainer.style.setProperty('--animation-duration', this.fallbackValues.animation.duration.toString() + 'ms');
 		alertContainer.style.setProperty('--animation-easing', this.fallbackValues.animation.easing);
@@ -101,7 +101,7 @@ class AlertsContainer {
 		// Variable to pass down the animation object further down to the inner functions
 		let passAnimation = this.fallbackValues.animation;
 
-		// This object contains the scg template for the different icons
+		// This object contains the svg template for the different icons
 		const icons = {
 			error: `<svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M17 10.625V18.0625" stroke="#D64747" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
