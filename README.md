@@ -10,7 +10,6 @@ npm install alert.js
 ```
 
 ### CDN
-
 CSS file
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alerts.js/browser/style.css" />
