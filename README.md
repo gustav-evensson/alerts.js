@@ -22,4 +22,4 @@ JS file
 
 ### Download file
 
-> Click <a href="https://github.com/gustav-evensson/notice.js/blob/main/notice.tar.gz?raw=true" download>here</a> to download
+> Click <a href="https://github.com/gustav-evensson/alerts.js/blob/main/src/alertsjs.tar.gz" download>here</a> to download
