@@ -23,3 +23,29 @@ JS file
 ### Download file
 
 Click <a href="https://github.com/gustav-evensson/alerts.js/raw/main/src/alertsjs.tar.gz" download>here</a> to download the alertsjs.tar.gz file.
+
+## Get Started
+
+Alerts.js is built on the AlertsContainer class so the first step after installation is to make a new instance of the class.
+
+Whes using a framework or other ES6 based code make sure to import the module. Note that the class export is the default one so you can name the import anything you want but when using it in your html file imported with CDN you have to use the correct class name.
+
+### Using a framework
+
+```js
+import AlertsJS from 'alerts.js'
+
+const alerts = new AlertsJS()
+```
+
+### Using in html script tag
+
+```html
+<script>
+  const alerts = new AlertsContainer();
+</script>
+```
+
+
+
+
