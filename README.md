@@ -4,12 +4,14 @@ Alerts.js is a modern, lightweight and customizable javascript notifications/ale
 ## Intsallation
 
 ### NPM
-**Note:** The css is already imported in the module.
+
+**Note:** The CSS is already imported in the module.
 ```
 npm install alert.js
 ```
 
 ### CDN
+
 CSS file
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alerts.js/browser/style.css" />
@@ -46,6 +48,34 @@ const alerts = new AlertsJS()
 </script>
 ```
 
+## Constructor arguments
+
+The class constructor takes in an object as the argument which allows styling and customization options.
+
+Bellow we show an example and tha values in this example are also the default values.
+
+```js
+const alertsJS = new AlertsContainer({
+  type: 'standard',
+  position: 'bottom-left',
+  darkMode: false,
+  animation: {
+    type: 'slide-right',
+    duration: 300,
+    easing: 'ease',
+  },
+  wallGap: 10,
+  fontSize: 24,
+  colors: {
+    textColor: { dark: '#FFFFFF', light: '#000000' },
+    bgColor: { dark: '#303030', light: '#FFFFFF' },
+    error: '#d64747',
+    warning: '#d27722',
+    success: '#0ba808',
+    alert: '#5274ca',
+  },
+});
+```
 
 
 
