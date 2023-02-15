@@ -52,7 +52,7 @@ const alerts = new AlertsJS()
 
 The class constructor takes in an object as the argument which allows styling and customization options.
 
-Bellow we show an example and tha values in this example are also the default values.
+Bellow we show an example and the values shown are also the default values.
 
 ```js
 const alertsJS = new AlertsContainer({
