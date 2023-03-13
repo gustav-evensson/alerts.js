@@ -1,4 +1,5 @@
-customize the notifications.
+# Alerts.js
+Alerts.js is a modern, lightweight and customizable javascript notifications/alerts library. It's built with JS and CSS and provides a AlertContainer class and functions to customize the notifications.
 
 ## Intsallation
 
