@@ -1,5 +1,4 @@
-# Alerts.js
-Alerts.js is a modern, lightweight and customizable javascript notifications/alerts library. It's built with JS and CSS and provides a AlertContainer class and functions to customize the notifications.
+customize the notifications.
 
 ## Intsallation
 
@@ -56,16 +55,11 @@ Bellow we show an example and the values shown are also the default values.
 
 ```js
 const alertsJS = new AlertsContainer({
-  type: 'standard',
-  position: 'bottom-left',
+  position: 'bottom-center',
   darkMode: false,
-  animation: {
-    type: 'slide-right',
-    duration: 300,
-    easing: 'ease',
-  },
-  wallGap: 10,
-  fontSize: 24,
+  animation: 'slide-up',
+  wallGap: 32,
+  scaling: 1,
   colors: {
     textColor: { dark: '#FFFFFF', light: '#000000' },
     bgColor: { dark: '#303030', light: '#FFFFFF' },
@@ -77,5 +71,40 @@ const alertsJS = new AlertsContainer({
 });
 ```
 
+### Position
 
+Decides the position of the notification container and can have following values:
 
+- top-left
+- top-center
+- top-right
+- bottom-left
+- bottom-center
+- bottom-right
+
+### DarkMode
+
+A boolean that decides whether to use the dark or light colors.
+
+### Animation
+
+Decides the the type and direction of the animation, and can have following values:
+
+- slide-up
+- slide-down 
+- slide-left
+- slide-right
+- fade
+- node
+
+### WallGap
+
+Decides the distance between the alerts and the border of the viewport (in pixel values).
+
+### Scaling 
+
+Makes it easy to get bigger or smaller alerts depending on what fits your site.
+
+### Colors 
+
+Takes in an object that allows for color customization. The light and dark value are displayed depending on the darkMode argument.
