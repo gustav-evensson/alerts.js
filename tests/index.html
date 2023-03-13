@@ -4,18 +4,17 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="../style.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alerts.js/browser/style.css" />
 		<title>Document</title>
 	</head>
 	<body>
-		<img src="./bgArt.jpg"/>
-		<button onclick="ajs.createAlert('Hello!', 'error', 3000)">Create Notice</button>
-        <script src="../alerts.js"></script>
+		<button onclick="ajs.createAlert('Hello!', 'error', 'persisted')">Create Notice</button>
+        <script src="https://cdn.jsdelivr.net/npm/alerts.js/browser/alerts.js"></script>
 		<script>
                 const ajs = new AlertsContainer({
 					position: 'bottom-center',
 					animation: 'slide-up',
-					darkMode: false,
+					darkMode: true,
 					scaling: 1,
 					wallGap: 24,
 				});
@@ -34,10 +33,10 @@
 			}
 			button {
 				background-color: white;
+				border: solid 2px black;
 				font-size: 24px;
 				padding: 15px 40px;
 				border-radius: 6px;
-				border: none;
 				cursor: pointer;
 			}
 		</style>
