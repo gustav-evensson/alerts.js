@@ -9,15 +9,16 @@
 	</head>
 	<body>
 		<img src="./bgArt.jpg"/>
-		<button onclick="ajs.createAlert('Hello from Alerts.js!', 'success', 'persisted')">Create Notice</button>
+		<button onclick="ajs.createAlert('Hello!', 'error', 3000)">Create Notice</button>
         <script src="../alerts.js"></script>
 		<script>
                 const ajs = new AlertsContainer({
-                    position: 'bottom-center',
-                    animation: {
-                        type: 'slide-up',
-                    }
-                });
+					position: 'bottom-center',
+					animation: 'slide-up',
+					darkMode: false,
+					scaling: 1,
+					wallGap: 24,
+				});
 		</script>
 		<style>
 			img,
