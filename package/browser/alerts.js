@@ -1,6 +1,5 @@
 class AlertsContainer {
-	constructor({ position, darkMode, animation, wallGap, scaling, colors }) {
-
+	constructor({ position, darkMode, stacking, wallGap, scaling, colors, corners }) {
 		const defaultColorScheme = {
 			textColor: { dark: '#FFFFFF', light: '#000000' },
 			bgColor: { dark: '#303030', light: '#FFFFFF' },
@@ -9,20 +8,24 @@ class AlertsContainer {
 			success: '#0ba808',
 			alert: '#5274ca',
 		};
-
+		
 		// Taking in the values from the constructor args or setting them to a default value
-		console.log(colors)
+		
 		this.position = position || 'bottom-center';
 		this.darkMode = darkMode || false;
-		this.animation = animation || 'slide-up';
-		this.wallGap = wallGap || 32;
+		this.stacking = stacking || 'stack';
 		this.scaling = scaling || 1;
+		this.wallGap = wallGap || 32;
+		this.alertsArray = [];
+		this.corners = corners || 'rounded'
 		this.colorScheme = colors
 			? {
 					textColor: colors.textColor
 						? { dark: colors.textColor.dark || defaultColorScheme.textColor.dark, light: colors.textColor.light || defaultColorScheme.textColor.light }
 						: defaultColorScheme.textColor,
-					bgColor: colors.bgColor ? { dark: colors.bgColor.dark || defaultColorScheme.bgColor.dark, light: colors.bgColor.light || defaultColorScheme.bgColor.light } : defaultColorScheme.bgColor,
+					bgColor: colors.bgColor
+						? { dark: colors.bgColor.dark || defaultColorScheme.bgColor.dark, light: colors.bgColor.light || defaultColorScheme.bgColor.light }
+						: defaultColorScheme.bgColor,
 					error: colors.error || defaultColorScheme.error,
 					warning: colors.warning || defaultColorScheme.warning,
 					success: colors.success || defaultColorScheme.success,
@@ -36,8 +39,18 @@ class AlertsContainer {
 
 		// Applying class attributes to help with styling
 		alertContainer.classList.add(this.position);
-		alertContainer.classList.add(this.animation);
+		// alertContainer.classList.add(this.animation);
 		if (this.darkMode) alertContainer.classList.add('dark');
+
+		if(this.corners === 'round'){
+			alertContainer.style.setProperty('--radius', '32px');
+		}
+		else if(this.corners === 'square'){
+			alertContainer.style.setProperty('--radius', '0px');
+		}
+		else{
+			alertContainer.style.setProperty('--radius', '12px');
+		}
 
 		// Setting CSS variables from the contructor params
 		alertContainer.style.setProperty('--wall-gap', this.wallGap.toString() + 'px');
@@ -88,6 +101,23 @@ class AlertsContainer {
 			`,
 		};
 
+		function moveItemsStack(val) {
+			const value = val ? '' : '-';
+			for (let i = 0; i in this.alertsArray; i++) {
+				if (i < 4) {
+					this.alertsArray[this.alertsArray.length - 1 - i].style.translate = `0 ${value}${i * 20 - i * 5}%`;
+					this.alertsArray[this.alertsArray.length - 1 - i].style.scale = `${(1 - i / 20) * this.scaling}`;
+				}
+			}
+		}
+
+		function moveItemsColumn(val) {
+			const value = val ? '+' : '-';
+			for (let i = 0; i in this.alertsArray; i++) {
+				this.alertsArray[this.alertsArray.length - 1 - i].style.translate = `0 calc(${value}${i * 100}% ${value} ${i * 12}px)`;
+			}
+		}
+
 		// Function to build the alert element
 		function buildElement(text, type, duration) {
 			// We first check so that we can get an icon base on the type param
@@ -124,8 +154,19 @@ class AlertsContainer {
 				// Evenlistener for the close button
 				alertClose.addEventListener('click', () => {
 					// First we remove the class, giving us the reverse animation
-					alert.classList.remove('show');
+					// alert.classList.remove('show');
 
+					alert.style.opacity = '0';
+
+					const indexOfAlert = this.alertsArray.indexOf(alert);
+					this.alertsArray.splice(indexOfAlert, 1);
+
+					if (this.stacking === 'column') {;
+						moveItemsColumn(this.position.split('-')[0] === 'top');
+					} else {
+						moveItemsStack.call(this, this.position.split('-')[0] === 'top');
+						// moveItemsStack(this.position.split('-')[0] === 'top');
+					}
 					// We wait for the animation duration before we remove the element from the DOM
 					setTimeout(() => {
 						alert.remove();
@@ -145,9 +186,11 @@ class AlertsContainer {
 
 		if (typeof duration === 'number' || duration === 'persisted') {
 			// We build the element using th build function
-			var newAlert = buildElement(text, type, duration);
+			let boundFucntion = buildElement.bind(this);
+			var newAlert = boundFucntion(text, type, duration);
 
 			// We append the alert to the container
+			this.alertsArray.push(newAlert);
 			alertContainer.appendChild(newAlert);
 
 			// Here we wait a short delay so that the show class attributes dont apply instantly, giving us the animation.
@@ -155,10 +198,28 @@ class AlertsContainer {
 				newAlert.classList.add('show');
 			}, 10);
 
+			setTimeout(() => {
+				if (this.stacking === 'column') {
+					moveItemsColumn(this.position.split('-')[0] === 'top');
+				} else {
+					// moveItemsStack(this.position.split('-')[0] === 'top');
+					moveItemsStack.call(this, this.position.split('-')[0] === 'top');
+				}
+			}, 10);
+
 			// This timeout is for keeping the alert visable for the duration given by the duration param
 			if (duration !== 'persisted') {
 				setTimeout(() => {
-					newAlert.classList.remove('show');
+					newAlert.style.opacity = '0';
+
+					const indexOfAlert = this.alertsArray.indexOf(newAlert);
+					this.alertsArray.splice(indexOfAlert, 1);
+
+					if (this.stacking === 'column') {
+						moveItemsColumn(this.position.split('-')[0] === 'top');
+					} else {
+						moveItemsStack.call(this, this.position.split('-')[0] === 'top');
+					}
 					setTimeout(() => {
 						newAlert.remove();
 					}, 400);
