@@ -4,20 +4,24 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alerts.js/browser/style.css" />
+		<link rel="stylesheet" href="../src/style.css" />
 		<title>Document</title>
 	</head>
 	<body>
-		<button onclick="ajs.createAlert('Hello!', 'alert', 'persisted')">Create Notice</button>
-        <script src="https://cdn.jsdelivr.net/npm/alerts.js/browser/alerts.min.js"></script>
+		<button onclick="send()">Create Notice</button>
+        <script src="../src/alerts.js"></script>
 		<script>
                 const ajs = new AlertsContainer({
-					position: 'bottom-center',
-					animation: 'slide-up',
+					position: 'bottom-right',
+					stacking: 'stack',
 					darkMode: true,
-					scaling: 1,
-					wallGap: 24,
+					wallGap: 32,
 				});
+				let count = 0;
+				function send(){
+					ajs.createAlert('Hello!' + count, 'alert', 5000)
+					count++
+				}
 		</script>
 		<style>
 			img,
