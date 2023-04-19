@@ -1,4 +1,6 @@
-class AlertsContainer {
+import './style.css'
+
+export default class AlertsContainer {
 	constructor({ position, darkMode, stacking, wallGap, scaling, colors, corners, hideCountdown }) {
 		const defaultColorScheme = {
 			textColor: { dark: '#FFFFFF', light: '#000000' },
@@ -144,6 +146,9 @@ class AlertsContainer {
 			alert.appendChild(alertText);
 
 			if (duration === 'persisted') {
+				if (alertContainer.childElementCount == 0) {
+					alertContainer.classList.add('addPointers');
+				}
 				// Creating the close icon and appending it to the notifcation element we created above
 				var alertClose = document.createElement('div');
 				alertClose.classList.add('alerts-close-icon');
@@ -169,6 +174,9 @@ class AlertsContainer {
 					// We wait for the animation duration before we remove the element from the DOM
 					setTimeout(() => {
 						alert.remove();
+						if (alertContainer.childElementCount == 0) {
+							alertContainer.classList.remove('addPointers');
+						}
 					}, 400);
 				});
 			} else if(!this.hideCountdown) {
@@ -223,6 +231,9 @@ class AlertsContainer {
 					}
 					setTimeout(() => {
 						newAlert.remove();
+						if(alertContainer.childElementCount == 0){
+							alertContainer.classList.remove('addPointers')
+						}
 					}, 400);
 				}, duration);
 			}

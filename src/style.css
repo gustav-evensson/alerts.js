@@ -20,11 +20,16 @@
   place-items: center;
   z-index: 999999;
   font-family: "Quicksand", sans-serif;
+  pointer-events: none;
 }
 #alerts-container * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+#alerts-container.addPointers {
+  pointer-events: all;
 }
 
 #alerts-container .alerts {

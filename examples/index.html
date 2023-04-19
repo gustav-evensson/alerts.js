@@ -12,7 +12,7 @@
         <script src="../src/alerts.js"></script>
 		<script>
                 const ajs = new AlertsContainer({
-					position: 'top-center',
+					position: 'bottom-center',
 					stacking: 'stack',
 					darkMode: true,
 					wallGap: 32,
@@ -20,7 +20,7 @@
 				});
 				let count = 0;
 				function send(){
-					ajs.createAlert('Hello from someone very long!' + count, 'alert', 4000)
+					ajs.createAlert('Hello from someone very long!' + count, 'alert', 'persisted')
 					count++
 				}
 		</script>
@@ -28,9 +28,9 @@
 			img,
 			button {
 				position: fixed;
-				top: 50%;
+				top: 100%;
 				left: 50%;
-				translate: -50% -50%;
+				translate: -50% -100%;
 			}
 			img {
 				width: 100%;
