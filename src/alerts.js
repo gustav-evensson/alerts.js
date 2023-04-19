@@ -1,5 +1,5 @@
 class AlertsContainer {
-	constructor({ position, darkMode, stacking, wallGap, scaling, colors, corners }) {
+	constructor({ position, darkMode, stacking, wallGap, scaling, colors, corners, hideCountdown }) {
 		const defaultColorScheme = {
 			textColor: { dark: '#FFFFFF', light: '#000000' },
 			bgColor: { dark: '#303030', light: '#FFFFFF' },
@@ -8,16 +8,17 @@ class AlertsContainer {
 			success: '#0ba808',
 			alert: '#5274ca',
 		};
-		
+
 		// Taking in the values from the constructor args or setting them to a default value
-		
+
 		this.position = position || 'bottom-center';
 		this.darkMode = darkMode || false;
 		this.stacking = stacking || 'stack';
 		this.scaling = scaling || 1;
 		this.wallGap = wallGap || 32;
 		this.alertsArray = [];
-		this.corners = corners || 'rounded'
+		this.corners = corners || 'rounded';
+		this.hideCountdown = hideCountdown || false;
 		this.colorScheme = colors
 			? {
 					textColor: colors.textColor
@@ -42,13 +43,11 @@ class AlertsContainer {
 		// alertContainer.classList.add(this.animation);
 		if (this.darkMode) alertContainer.classList.add('dark');
 
-		if(this.corners === 'round'){
+		if (this.corners === 'round') {
 			alertContainer.style.setProperty('--radius', '32px');
-		}
-		else if(this.corners === 'square'){
+		} else if (this.corners === 'square') {
 			alertContainer.style.setProperty('--radius', '0px');
-		}
-		else{
+		} else {
 			alertContainer.style.setProperty('--radius', '12px');
 		}
 
@@ -161,7 +160,7 @@ class AlertsContainer {
 					const indexOfAlert = this.alertsArray.indexOf(alert);
 					this.alertsArray.splice(indexOfAlert, 1);
 
-					if (this.stacking === 'column') {;
+					if (this.stacking === 'column') {
 						moveItemsColumn(this.position.split('-')[0] === 'top');
 					} else {
 						moveItemsStack.call(this, this.position.split('-')[0] === 'top');
@@ -172,13 +171,15 @@ class AlertsContainer {
 						alert.remove();
 					}, 400);
 				});
-			} else {
+			} else if(!this.hideCountdown) {
 				// Creating the countdown icon and appending it to the notifcation element we created above
 				var alertCountDown = document.createElement('div');
 				alertCountDown.classList.add('alerts-countdown-icon');
 				alertCountDown.innerHTML = icons.countdown;
 				alertCountDown.style.animationDuration = duration.toString() + 'ms';
 				alert.appendChild(alertCountDown);
+			} else {
+				if (this.hideCountdown) alertContainer.classList.add('hideCountdown');
 			}
 			// We return the alert element
 			return alert;
