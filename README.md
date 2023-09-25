@@ -11,7 +11,7 @@ Alerts.js is a modern, lightweight and customizable javascript notifications/ale
 **Note:** The CSS is already imported in the module.
 
 ```bash
-npm install alert.js
+npm install alerts.js
 ```
 
 ### CDN
