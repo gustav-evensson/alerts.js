@@ -1,4 +1,4 @@
-![Alerts.js thumbnail]()
+![Alerts.js thumbnail](https://github.com/gustav-evensson/alerts.js/blob/main/assets/thumbnail.jpg)
 
 # Alerts.js
 
