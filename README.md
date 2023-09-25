@@ -1,23 +1,27 @@
 # Alerts.js
+
 Alerts.js is a modern, lightweight and customizable javascript notifications/alerts library. It's built with JS and CSS and provides a AlertContainer class and functions to customize the notifications.
 
-## Intsallation
+## Installation
 
 ### NPM
 
 **Note:** The CSS is already imported in the module.
-```
+
+```bash
 npm install alert.js
 ```
 
 ### CDN
 
 CSS file
+
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alerts.js/browser/style.css" />
 ```
 
 JS file
+
 ```html
 <script src="https://cdn.jsdelivr.net/npm/alerts.js/browser/alerts.min.js"></script>
 ```
@@ -30,7 +34,7 @@ Click <a href="https://github.com/gustav-evensson/alerts.js/raw/main/src/alertsj
 
 Alerts.js is built on the AlertsContainer class so the first step after installation is to make a new instance of the class.
 
-Whes using a framework or other ES6 based code make sure to import the module. Note that the class export is the default one so you can name the import anything you want but when using it in your html file imported with CDN you have to use the correct class name.
+When using a framework or other ES6 based code make sure to import the module. Note that the class export is the default one so you can name the import anything you want but when using it in your html file imported with CDN you have to use the correct class name.
 
 ### Using a framework
 
@@ -60,14 +64,14 @@ const alertsJS = new AlertsContainer({
   darkMode: false,
   animation: 'slide-up',
   wallGap: 32,
-  scaling: 1,
+  stacking: 'stack',
   colors: {
-    textColor: { dark: '#FFFFFF', light: '#000000' },
-    bgColor: { dark: '#303030', light: '#FFFFFF' },
-    error: '#d64747',
-    warning: '#d27722',
-    success: '#0ba808',
-    alert: '#5274ca',
+    text: { dark: "#FFFFFF", light: "#000000" },
+    background: { dark: "#303030", light: "#FFFFFF" },
+    error: { dark: "#E65858", light: "#FF3737" },
+    warning: { dark: "#FD9C41", light: "#FF9900" },
+    success: { dark: "#5FD95D", light: "#04C800" },
+    alert: { dark: "#6C8FE8", light: "#4690FF" },
   },
 });
 ```
@@ -92,7 +96,7 @@ A boolean that decides whether to use the dark or light colors.
 Decides the the type and direction of the animation, and can have following values:
 
 - slide-up
-- slide-down 
+- slide-down
 - slide-left
 - slide-right
 - fade
@@ -102,10 +106,10 @@ Decides the the type and direction of the animation, and can have following valu
 
 Decides the distance between the alerts and the border of the viewport (in pixel values).
 
-### Scaling 
+### Stacking
 
-Makes it easy to get bigger or smaller alerts depending on what fits your site.
+Here you can specify the way the alerts stack. The default setting is 'stack' which looks a lot like Apples notification stacking. The second one is 'column' where the alerts pushes the previous one horizontally .
 
-### Colors 
+### Colors
 
 Takes in an object that allows for color customization. The light and dark value are displayed depending on the darkMode argument.
