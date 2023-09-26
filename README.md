@@ -19,13 +19,13 @@ npm install alerts.js
 CSS file
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alerts.js/browser/style.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gustav-evensson/alerts.js/browser/style.min.css" />
 ```
 
 JS file
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/alerts.js/browser/alerts.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/gustav-evensson/alerts.js/browser/alerts.min.js"></script>
 ```
 
 ## Get Started
