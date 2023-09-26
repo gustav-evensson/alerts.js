@@ -39,22 +39,42 @@ When using a framework or other ES6 based code make sure to import the module. N
 ```js
 import AlertsJS from 'alerts.js'
 
-const alerts = new AlertsJS()
+const alertsJS = new AlertsJS()
 ```
 
 ### Using in html script tag
 
 ```html
 <script>
-  const alerts = new AlertsContainer();
+  const alertsJS = new AlertsContainer();
 </script>
+```
+
+## Sending an alert
+
+To send an alert we use the object we initiated earlier and run the createAlert funtion from it.
+
+```js
+
+alertsJS.createAlert('Hello from Alerts.js', 'alert', 3000)
+
+```
+
+- The first argument is the text to display on the alert
+- The second argument is what icon should be displayed (alert, error, warning, success)
+- The third one is the duration in ms it should show, it can also take in a string of value 'persisted' which keeps it on the screen until the remove button is pressed.
+
+```js
+
+alertsJS.createAlert('Hello from Alerts.js', 'alert', 'persisted')
+
 ```
 
 ## Constructor arguments
 
 The class constructor takes in an object as the argument which allows styling and customization options.
 
-Bellow we show an example and the values shown are also the default values.
+Bellow we show an example (the values shown are the default values).
 
 ```js
 const alertsJS = new AlertsContainer({
@@ -120,26 +140,6 @@ The alerts are scaling with the fontsize of the parent element by default. To ch
 #alerts-container{
   font-size: 20px;
 }
-```
-
-## Sending an alert
-
-To send an alert we use the object we initiated earlier and run the createAlert funtion from it.
-
-```js
-
-alertsJS.createAlert('Hello from Alerts.js', 'alert', 3000)
-
-```
-
-- The first argument is the text to display on the alert
-- The second argument is what icon should be displayed (alert, error, warning, success)
-- The third one is the duration in ms it should show, it can also take in a string of value 'persisted' which keeps it on the screen until the remove button is pressed.
-
-```js
-
-alertsJS.createAlert('Hello from Alerts.js', 'alert', 'persisted')
-
 ```
 
 ## Dynamic dark mode
