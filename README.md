@@ -124,7 +124,13 @@ Decides the distance between the alerts and the border of the viewport (in pixel
 
 ### Stacking
 
-Here you can specify the way the alerts stack. The default setting is 'stack' which looks a lot like Apples notification stacking. The second one is 'column' where the alerts pushes the previous one horizontally .
+Here you can specify the way the alerts stack. The default setting is 'stack' which looks a lot like Apples notification stacking. The second one is 'column' where the alerts pushes the previous one horizontally.
+
+### HideCountdown
+
+This option is for hiding the countdown timer on the right side if the alert. 
+
+**NOTE:** does not work for peristed alerts.
 
 ### Colors
 
