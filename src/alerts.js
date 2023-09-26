@@ -263,5 +263,14 @@ class AlertsContainer {
                 'Duration argument (parameter 3 of the createAlert() function) is of an unaccepted value. It should be a Number > or = 0 or a string of the value "persisted" for persisted notifications'
             );
         }
+
+		
     }
+
+	isDarkMode(value){
+		const alertContainer = document.querySelector('#alerts-container')
+		if(value === true) alertContainer.classList.add('dark')
+		else if (value === false) alertContainer.classList.remove('dark')
+		else console.error(`Expected true or false got a ${typeof(value)} of value "${value}"`)
+	}
 }

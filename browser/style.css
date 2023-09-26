@@ -203,22 +203,6 @@
   translate: 0 200%;
 }
 
-#alerts-container.slide-up .alerts {
-  translate: 0 100%;
-}
-
-#alerts-container.slide-down .alerts {
-  translate: 0 -100%;
-}
-
-#alerts-container.slide-left .alerts {
-  translate: 100% 0;
-}
-
-#alerts-container.slide-right .alerts {
-  translate: -100% 0;
-}
-
 #alerts-container .alerts.show {
   opacity: 1;
   translate: 0 0;

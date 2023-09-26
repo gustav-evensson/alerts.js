@@ -226,30 +226,13 @@
 	translate: 0 200%;
 }
 
-// Animations
-#alerts-container.slide-up .alerts {
-	translate: 0 100%;
-}
-
-#alerts-container.slide-down .alerts {
-	translate: 0 -100%;
-}
-
-#alerts-container.slide-left .alerts {
-	translate: 100% 0;
-}
-
-#alerts-container.slide-right .alerts {
-	translate: -100% 0;
-}
-
 #alerts-container .alerts.show {
 	opacity: 1;
 	translate: 0 0;
 	transition: opacity 300ms, translate 300ms, scale 300ms;
 }
 
-// Reponsive styling
+// Responsive styling
 @media screen and (max-width: 500px) {
 	#alerts-container {
 		right: 0;
