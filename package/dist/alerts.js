@@ -1,8 +1,10 @@
-import "./style.css";
+import './style.css'
 
 export default class AlertsContainer {
     constructor({ position, darkMode, stacking, wallGap, colors, corners, hideCountdown }) {
-        const defaultColorScheme = {
+		
+		// Default color scheme
+		const defaultColorScheme = {
             text: { dark: "#FFFFFF", light: "#000000" },
             background: { dark: "#303030", light: "#FFFFFF" },
             error: { dark: "#E65858", light: "#FF3737" },
@@ -11,6 +13,7 @@ export default class AlertsContainer {
             alert: { dark: "#6C8FE8", light: "#4690FF" },
         };
 
+        // Taking in the values from the constructor args or setting them to a default value
         this.position = position || "bottom-center";
         this.darkMode = darkMode || false;
         this.stacking = stacking || "stack";
@@ -50,11 +53,19 @@ export default class AlertsContainer {
               }
             : defaultColorScheme;
 
-        const alertContainer = document.createElement("div");
-        alertContainer.setAttribute("id", "alerts-container");
+        let alertContainer;
+        // Creating the alert container element
+        if(document.querySelector("#alerts-container")){
+            alertContainer = document.querySelector("#alerts-container")
+        }
+        else{
+            alertContainer = document.createElement("div");
+            alertContainer.setAttribute("id", "alerts-container");
+        }
 
+        // Applying class attributes to help with styling
         alertContainer.classList.add(this.position);
-
+        // alertContainer.classList.add(this.animation);
         if (this.darkMode) alertContainer.classList.add("dark");
 
         if (this.corners === "round") {
@@ -65,6 +76,7 @@ export default class AlertsContainer {
             alertContainer.style.setProperty("--radius", "0.5em");
         }
 
+        // Setting CSS variables from the constructor params
         alertContainer.style.setProperty("--wall-gap", this.wallGap.toString() + "px");
         alertContainer.style.setProperty("--text-light", this.colorScheme.text.light);
         alertContainer.style.setProperty("--text-dark", this.colorScheme.text.dark);
@@ -79,11 +91,14 @@ export default class AlertsContainer {
         alertContainer.style.setProperty("--alert-light", this.colorScheme.alert.light);
         alertContainer.style.setProperty("--alert-dark", this.colorScheme.alert.dark);
 
+        // Appending the alert container to the body
         document.body.appendChild(alertContainer);
     }
     createAlert(text, type = "alert", duration = 3000) {
+        // Get the alert container from the DOM
         const alertContainer = document.querySelector("#alerts-container");
 
+        // This object contains the svg template for the different icons
         const icons = {
             error: `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<path d="M28.4125 10.025L21.975 3.5875C21.5999 3.21337 21.0923 3.00227 20.5625 3H11.4375C10.9077 3.00227 10.4001 3.21337 10.025 3.5875L3.5875 10.025C3.21337 10.4001 3.00227 10.9077 3 11.4375V20.5625C3.00227 21.0923 3.21337 21.5999 3.5875 21.975L10.025 28.4125C10.4001 28.7866 10.9077 28.9977 11.4375 29H20.5625C21.0923 28.9977 21.5999 28.7866 21.975 28.4125L28.4125 21.975C28.7866 21.5999 28.9977 21.0923 29 20.5625V11.4375C28.9977 10.9077 28.7866 10.4001 28.4125 10.025ZM15 10C15 9.73478 15.1054 9.48043 15.2929 9.29289C15.4804 9.10536 15.7348 9 16 9C16.2652 9 16.5196 9.10536 16.7071 9.29289C16.8946 9.48043 17 9.73478 17 10V17C17 17.2652 16.8946 17.5196 16.7071 17.7071C16.5196 17.8946 16.2652 18 16 18C15.7348 18 15.4804 17.8946 15.2929 17.7071C15.1054 17.5196 15 17.2652 15 17V10ZM16 23C15.7033 23 15.4133 22.912 15.1666 22.7472C14.92 22.5824 14.7277 22.3481 14.6142 22.074C14.5006 21.7999 14.4709 21.4983 14.5288 21.2074C14.5867 20.9164 14.7296 20.6491 14.9393 20.4393C15.1491 20.2296 15.4164 20.0867 15.7074 20.0288C15.9983 19.9709 16.2999 20.0007 16.574 20.1142C16.8481 20.2277 17.0824 20.42 17.2472 20.6666C17.412 20.9133 17.5 21.2033 17.5 21.5C17.5 21.8978 17.342 22.2794 17.0607 22.5607C16.7794 22.842 16.3978 23 16 23Z" fill="#D64747"/>
@@ -131,22 +146,27 @@ export default class AlertsContainer {
             }
         }
 
+        // Function to build the alert element
         function buildElement(text, type, duration) {
+            // We first check so that we can get an icon base on the type param
             if (icons[type] === undefined) {
                 console.error("Type argument (parameter 2 of the createAlert() function) is of an unaccepted value.");
                 return;
             }
 
+            // Creating and applying classes to the alert element
             var alert = document.createElement("div");
             alert.classList.add("alerts");
             alert.classList.add(`${type}`);
 
+            // Creating the alert icon and appending it to the alert element
             var alertIcon = document.createElement("div");
             alertIcon.classList.add("alerts-icon");
             alertIcon.classList.add(`${type}`);
-            alertIcon.innerHTML = icons[type];
+            alertIcon.innerHTML = icons[type]; // Here we take the SVG template from the icons.js file based on the alert type
             alert.appendChild(alertIcon);
 
+            // Creating the alert text
             var alertText = document.createElement("p");
             alertText.classList.add("alerts-text");
             alertText.innerText = text;
@@ -156,13 +176,17 @@ export default class AlertsContainer {
                 if (alertContainer.childElementCount == 0) {
                     alertContainer.classList.add("addPointers");
                 }
-
+                // Creating the close icon and appending it to the alert element we created above
                 var alertClose = document.createElement("div");
                 alertClose.classList.add("alerts-close-icon");
                 alertClose.innerHTML = icons.close;
                 alert.appendChild(alertClose);
 
+                // Eventlistener for the close button
                 alertClose.addEventListener("click", () => {
+                    // First we remove the class, giving us the reverse animation
+                    // alert.classList.remove('show');
+
                     alert.style.opacity = "0";
 
                     const indexOfAlert = this.alertsArray.indexOf(alert);
@@ -172,8 +196,9 @@ export default class AlertsContainer {
                         moveItemsColumn.call(this, this.position.split("-")[0] === "top");
                     } else {
                         moveItemsStack.call(this, this.position.split("-")[0] === "top");
+                        // moveItemsStack(this.position.split('-')[0] === 'top');
                     }
-
+                    // We wait for the animation duration before we remove the element from the DOM
                     setTimeout(() => {
                         alert.remove();
                         if (alertContainer.childElementCount == 0) {
@@ -182,6 +207,7 @@ export default class AlertsContainer {
                     }, 400);
                 });
             } else if (!this.hideCountdown) {
+                // Creating the countdown icon and appending it to the alert element we created above
                 var alertCountDown = document.createElement("div");
                 alertCountDown.classList.add("alerts-countdown-icon");
                 alertCountDown.innerHTML = icons.countdown;
@@ -190,29 +216,35 @@ export default class AlertsContainer {
             } else {
                 if (this.hideCountdown) alertContainer.classList.add("hideCountdown");
             }
-
+            // We return the alert element
             return alert;
         }
 
         if (typeof duration === "number" || duration === "persisted") {
+            // We build the element using th build function
             let boundFunction = buildElement.bind(this);
             var newAlert = boundFunction(text, type, duration);
 
+            // We append the alert to the container
             this.alertsArray.push(newAlert);
             alertContainer.appendChild(newAlert);
 
+            // Here we wait a short delay so that the show class attributes don't apply instantly, giving us the animation.
             setTimeout(() => {
                 newAlert.classList.add("show");
             }, 10);
 
             setTimeout(() => {
                 if (this.stacking === "column") {
+                    // moveItemsColumn(this.position.split('-')[0] === 'top');
                     moveItemsColumn.call(this, this.position.split("-")[0] === "top");
                 } else {
+                    // moveItemsStack(this.position.split('-')[0] === 'top');
                     moveItemsStack.call(this, this.position.split("-")[0] === "top");
                 }
             }, 10);
 
+            // This timeout is for keeping the alert visible for the duration given by the duration param
             if (duration !== "persisted") {
                 setTimeout(() => {
                     newAlert.style.opacity = "0";
@@ -234,12 +266,16 @@ export default class AlertsContainer {
                 }, duration);
             }
         } else {
+            // This is a fallback if the duration element is not accepted
             console.error(
                 'Duration argument (parameter 3 of the createAlert() function) is of an unaccepted value. It should be a Number > or = 0 or a string of the value "persisted" for persisted notifications'
             );
         }
+
+		
     }
-    isDarkMode(value){
+
+	isDarkMode(value){
 		const alertContainer = document.querySelector('#alerts-container')
 		if(value === true) alertContainer.classList.add('dark')
 		else if (value === false) alertContainer.classList.remove('dark')

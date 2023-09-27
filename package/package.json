@@ -1,6 +1,6 @@
 {
   "name": "alerts.js",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "description": "A javascript notification / alerts library",
   "main": "./dist/alerts.js",
   "repository": {

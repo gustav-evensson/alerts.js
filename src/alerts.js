@@ -51,9 +51,15 @@ class AlertsContainer {
               }
             : defaultColorScheme;
 
+        let alertContainer;
         // Creating the alert container element
-        const alertContainer = document.createElement("div");
-        alertContainer.setAttribute("id", "alerts-container");
+        if(document.querySelector("#alerts-container")){
+            alertContainer = document.querySelector("#alerts-container")
+        }
+        else{
+            alertContainer = document.createElement("div");
+            alertContainer.setAttribute("id", "alerts-container");
+        }
 
         // Applying class attributes to help with styling
         alertContainer.classList.add(this.position);
