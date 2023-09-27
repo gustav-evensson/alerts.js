@@ -9,7 +9,7 @@
     </head>
     <body>
         <button onclick="send()">Create Notice</button>
-        <button onclick="switchMode()">Switch mode</button>
+        <button onclick="reInitialize()">Switch mode</button>
         <!-- <script src="https://cdn.jsdelivr.net/gh/gustav-evensson/alerts.js/browser/alerts.min.js"></script> -->
         <script src="../alerts.js"></script>
         <script>
@@ -36,6 +36,22 @@
             function switchMode(){
                 darkMode ? ajs.isDarkMode(false) : ajs.isDarkMode(true)
                 darkMode = !darkMode
+            }
+            function reInitialize(){
+                const ajs2 = new AlertsContainer({
+                position: "top-right",
+                animation: 'slide-right',
+                darkMode: false,
+                // stacking: 'column',
+                // wallGap: 12,
+                // hideCountdown: false,
+                // corners: 'rounded',
+                colors: {
+                    background: {
+                        light: '#eee'
+                    }
+                }
+            });
             }
         </script>
         <style>

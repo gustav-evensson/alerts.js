@@ -1,6 +1,4 @@
-import './style.css'
-
-export default class AlertsContainer {
+class AlertsContainer {
     constructor({ position, darkMode, stacking, wallGap, colors, corners, hideCountdown }) {
 		
 		// Default color scheme
@@ -53,15 +51,15 @@ export default class AlertsContainer {
               }
             : defaultColorScheme;
 
-        let alertContainer;
-        // Creating the alert container element
+        // We remove any existing containers in case the class is re-initialized
         if(document.querySelector("#alerts-container")){
-            alertContainer = document.querySelector("#alerts-container")
+            document.querySelector("#alerts-container").remove()
         }
-        else{
-            alertContainer = document.createElement("div");
-            alertContainer.setAttribute("id", "alerts-container");
-        }
+        
+        // Creating the alert container element
+        const alertContainer = document.createElement("div");
+        alertContainer.setAttribute("id", "alerts-container");
+    
 
         // Applying class attributes to help with styling
         alertContainer.classList.add(this.position);
