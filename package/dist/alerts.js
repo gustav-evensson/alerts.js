@@ -1,4 +1,6 @@
-class AlertsContainer {
+import './style.css'
+
+export default class AlertsContainer {
     constructor({ position, darkMode, stacking, wallGap, colors, corners, hideCountdown }) {
 		
 		// Default color scheme
